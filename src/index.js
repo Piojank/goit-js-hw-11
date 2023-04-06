@@ -95,7 +95,7 @@ const renderPhotos = (photos) => {
         });
     }
 
-    let lightbox = new SimpleLightbox(".gallery a", {
+    new SimpleLightbox(".gallery a", {
         captionPosition: "outside",
         captionsData: "alt",
         captionDelay: "250",
