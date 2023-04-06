@@ -84,16 +84,18 @@ const renderPhotos = (photos) => {
 
     gallery.innerHTML = markup;
 
-    if (pageNumber > 1) {
+    if (pageNumber >= 1) {
         const { height: cardHeight } = document
         .querySelector('.gallery .photo-card')
         .getBoundingClientRect();
 
-        window.scrollBy({
-        top: cardHeight * 2,
-        behavior: 'smooth',
+        window.requestAnimationFrame(() => {
+            window.scrollBy({
+            top: cardHeight * 2,
+            behavior: 'smooth',
+            });
         });
-    }
+    };
 
     new SimpleLightbox(".gallery a", {
         captionPosition: "outside",
