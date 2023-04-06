@@ -18,28 +18,28 @@ let leftHits = 0;
 const searchImages = () => {
     fetchImages(input.value, pageNumber)
         .then(photos => {
-            if (pageNumber < 1) {
-                gallery.innerHTML = '';
-            } else if (pageNumber >= 1) {
+        if (pageNumber < 1) {
+            gallery.innerHTML = '';
+        } else if (pageNumber >= 1) {
+            btnLoadMore.classList.remove('is-hidden');
 
-                btnLoadMore.classList.remove('.is-hidden');
-
-                if (leftHits < 0) {
-                    btnLoadMore.classList.add('.is-hidden');
-                    Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
-                }
+            if (leftHits < 0) {
+            btnLoadMore.classList.add('is-hidden');
+            Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
             }
+        }
 
-            renderphotos(photos);
+        renderPhotos(photos);
             pageNumber += 1;
             leftHits = totalHits - pageNumber * 40;
         })
-        .catch(error => {
-            console.log(error);
+
+        .catch(err => {
+            console.log(err);
         });
 };
 
-const renderphotos = (photos) => {
+const renderPhotos = (photos) => {
     totalHits = photos.totalHits;
     
     if (pageNumber <= 1) {
@@ -93,9 +93,9 @@ const renderphotos = (photos) => {
         top: cardHeight * 2,
         behavior: 'smooth',
         });
-    };
+    }
 
-        new SimpleLightbox(".gallery a", {
+    let lightbox = new SimpleLightbox(".gallery a", {
         captionPosition: "outside",
         captionsData: "alt",
         captionDelay: "250",
