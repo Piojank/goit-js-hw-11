@@ -15,7 +15,7 @@ let pageNumber = 1;
 let totalHits = 0;
 let leftHits = 0;
 
-const searchImages = () => {
+const searchImages = async () => {
     fetchImages(input.value, pageNumber)
         .then(photos => {
         if (pageNumber < 1) {
@@ -89,11 +89,9 @@ const renderPhotos = (photos) => {
         .querySelector('.gallery .photo-card')
         .getBoundingClientRect();
 
-        window.requestAnimationFrame(() => {
             window.scrollBy({
             top: cardHeight * 2,
             behavior: 'smooth',
-            });
         });
     };
 
