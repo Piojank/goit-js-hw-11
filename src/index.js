@@ -93,7 +93,7 @@ const renderphotos = (photos) => {
         top: cardHeight * 2,
         behavior: 'smooth',
         });
-    }
+    };
 
         new SimpleLightbox(".gallery a", {
         captionPosition: "outside",
