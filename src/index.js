@@ -111,6 +111,7 @@ const getPhotos = e => {
     if (input.value !== "") {
         searchImages();
     } else {
+        btnLoadMore.classList.add('is-hidden');
         Notiflix.Notify.failure("Please type something to start search");
     }
 };
