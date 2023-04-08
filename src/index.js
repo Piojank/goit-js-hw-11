@@ -48,7 +48,7 @@ const renderPhotos = (photos) => {
         leftHits = totalHits;
         if (totalHits <= 0) {
             Notiflix.Notify.failure("Sorry, there are no photos matching your search query. Please try again.");
-            btnLoadMore.classList.toggle('is-hidden');
+            btnLoadMore.classList.add('is-hidden');
         } else {
             Notiflix.Notify.success(`Found ${leftHits} photos`);
         }
