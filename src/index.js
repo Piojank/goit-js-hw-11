@@ -31,11 +31,11 @@ const searchImages = async () => {
 
         renderPhotos(photos);
             pageNumber += 1;
-            leftHits = totalHits - pageNumber * 40;
+            leftHits = photos.totalHits - (pageNumber * 40);
         })
 
-        .catch(err => {
-            console.log(err);
+        .catch(error => {
+            console.log(error);
         });
 };
 
@@ -48,7 +48,7 @@ const renderPhotos = (photos) => {
             Notiflix.Notify.failure("Sorry, there are no photos matching your search query. Please try again.");
             btnLoadMore.classList.toggle('is-hidden');
         } else {
-            Notiflix.Notify.success(`Found ${photos.totalHits} photos`);
+            Notiflix.Notify.success(`Found ${leftHits} photos`);
         }
     }
 
@@ -82,9 +82,9 @@ const renderPhotos = (photos) => {
         </div>
     </div>`).join("");
 
-    gallery.innerHTML = markup;
+    gallery.innerHTML += markup;
 
-    if (pageNumber >= 1) {
+    if (pageNumber > 1) {
         const { height: cardHeight } = document
         .querySelector('.gallery .photo-card')
         .getBoundingClientRect();
