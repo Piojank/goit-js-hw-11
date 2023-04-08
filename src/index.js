@@ -18,14 +18,16 @@ let leftHits = 0;
 const searchImages = async () => {
     fetchImages(input.value, pageNumber)
         .then(photos => {
+
         if (pageNumber < 1) {
             gallery.innerHTML = '';
+
         } else if (pageNumber >= 1) {
             btnLoadMore.classList.remove('is-hidden');
 
             if (leftHits < 0) {
             btnLoadMore.classList.add('is-hidden');
-            Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
+            Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
             }
         }
 
@@ -106,7 +108,11 @@ const getPhotos = e => {
     e.preventDefault();
     pageNumber = 1;
     gallery.innerHTML = '';
-    searchImages();
+    if (input.value !== "") {
+        searchImages();
+    } else {
+        Notiflix.Notify.failure("Please type something to start search");
+    }
 };
 
 const loadMore = e => {
